@@ -43,12 +43,6 @@ public class ControllerCategoria {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
-	@GetMapping("/material/{material}")
-	public ResponseEntity<List<Categoria>> getByMaterial ( @PathVariable String material){
-		return ResponseEntity.ok(repository.findAllByMaterialContainingIgnoreCase(material));
-	}
-	
-
 	@GetMapping("/tipo/{tipo}")
 	public ResponseEntity<List<Categoria>> getByTipo ( @PathVariable String tipo){
 		return ResponseEntity.ok(repository.findAllByTipoContainingIgnoreCase(tipo));

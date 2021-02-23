@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Contato } from '../model/Contato';
+import { AlertasService } from '../service/alertas.service';
+import { ContatoService } from '../service/contato.service';
 
 
 @Component({
@@ -9,12 +11,21 @@ import { Router } from '@angular/router';
 })
 export class ContatoComponent implements OnInit {
 
+  contato: Contato = new Contato()
+
   constructor(
-    private router: Router
+    private contatoService: ContatoService,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
     window.scroll(0,0)
+  }
+
+  postContato() {
+    this.contatoService.postContato(this.contato).subscribe(() => {
+      this.alertas.showAlertSuccess("Mensagem enviada com sucesso!")
+    })
   }
 
 }

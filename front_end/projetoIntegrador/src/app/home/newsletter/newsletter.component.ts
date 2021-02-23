@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertasService } from 'src/app/service/alertas.service';
 
 @Component({
   selector: 'app-newsletter',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsletterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private alertas: AlertasService
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+  }
+
+  inscreva(){
+    this.alertas.showAlertSuccess('E-mail cadastrado com sucesso!')
   }
 
 }

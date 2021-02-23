@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -37,6 +38,17 @@ public class Produto {
 		@Column
 		private String foto;
 		
+		@OneToOne
+		private Carrinho carrinho;
+		
+		public Carrinho getCarrinho() {
+			return carrinho;
+		}
+
+		public void setCarrinho(Carrinho carrinho) {
+			this.carrinho = carrinho;
+		}
+
 		public String getFoto() {
 			return foto;
 		}
@@ -56,6 +68,18 @@ public class Produto {
 		@ManyToOne 
 		@JsonIgnoreProperties ("produto")
 		private Categoria categoria;
+		
+		@ManyToOne 
+		@JsonIgnoreProperties ("produto")
+		private Material material;
+
+		public Material getMaterial() {
+			return material;
+		}
+
+		public void setMaterial(Material material) {
+			this.material = material;
+		}
 
 		public long getId_produto() {
 			return id_produto;
